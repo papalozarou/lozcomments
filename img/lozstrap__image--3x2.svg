@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="150px" height="100px" viewBox="0 0 150 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title></title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="lozstrap--image--3x2" sketch:type="MSArtboardGroup">
+            <rect id="background-copy" fill="#777777" sketch:type="MSShapeGroup" x="0" y="0" width="150" height="100"></rect>
+            <path d="M69.4788732,48.3380282 L73,42 L75.9746835,47.3544304 L80.5,39 L87,51 L76,51 L76,51 L69.5,51 L63,51 L67,44 L69.4788732,48.3380282 L69.4788732,48.3380282 Z M59,25 L59,61 L91,61 L91,25 L59,25 Z M61,27 L61,55 L89,55 L89,27 L61,27 Z M69,39 C71.2091391,39 73,37.2091391 73,35 C73,32.7908609 71.2091391,31 69,31 C66.7908609,31 65,32.7908609 65,35 C65,37.2091391 66.7908609,39 69,39 Z" id="scene-copy" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+            <text id="3:2" sketch:type="MSTextLayer" font-family="Helvetica Neue" font-size="10" font-weight="bold" sketch:alignment="middle" fill="#FFFFFF">
+                <tspan x="68.05" y="73">3:2</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,301 @@
+// -----------------------------------------------------------------------------
+// lozcomments is a simple commenting system for HTML wireframes and design
+// mock-ups. It uses Firebase (https://www.firebase.com/) to store data.
+//
+// ©2014 Loz Gray – Creative Commons Attribution Sharealike 3.0 Unported 
+// http://creativecommons.org/licenses/by-sa/3.0/
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Table of contents
+// --------------------------------------
+// 1.0 imports
+// 2.0 variables
+// 3.0 general
+// 4.0 type
+// 5.0 layout
+// 6.0 modules
+// ----------------------------------------------------------------------------- 
+
+// 1.0 imports
+// -----------------------------------------------------------------------------
+@import 'lozstrap.library.less';
+@import 'lozstrap.breakpoints.less';
+
+// 2.0 variables
+// -----------------------------------------------------------------------------
+@path--images:'../img/';
+
+@color__brand:#6b2323;
+@color__highlight:spin(@color__brand, 180);
+
+@color__link:#ffdc52;
+@color__link--visited:#ffeea8;
+@color__link--hover:#fc0;
+
+
+@color__neutral--lighest:#f6f6f6;
+@color__neutral--mid-light:#999795;
+@color__neutral--mid:#787674;
+@color__neutral--dark:#363534;
+
+// 3.0 general
+// -----------------------------------------------------------------------------
+
+// 4.0 type
+// -----------------------------------------------------------------------------
+.lozcomments__container {
+	text-align:left;
+}
+
+.lozcomment__ {
+	&author, &message {
+		.font-size-line-height(12,16);
+		font-family:@sans-serif;
+		color:#f6f6f6;
+		text-align:left;
+		text-overflow:ellipsis;
+	}
+	&author {
+		font-weight:bold;
+	}
+	&message {
+		&-body__ {
+			&link {
+				.links(@color__link,@color__link--visited,@color__link--hover);
+			}
+			&mention {
+				font-weight:bold;
+				color:@color__brand;
+			}
+		}
+	}	
+}
+
+.lozcomments__form {
+	&__ {
+		&author, &message, &submit, &cancel {
+			font-family:@sans-serif;
+		}
+		&author, &message {
+			.font-size-line-height(12,16);
+			// color:@color__neutral--mid;
+			&:focus {
+				color:#454545;
+			}
+		}
+		&submit, &cancel {
+			.font-size-line-height(11,16);
+			font-weight:bold;
+		}
+		&submit {
+			color:@color__neutral--lightest;
+			&:focus, &:hover {
+				color:#fff;
+			}
+		}
+		&cancel {
+			color:@color__neutral--mid;
+			&:focus, &:hover {
+				color:@color__neutral--mid-light;
+			}
+		}
+	}
+}
+
+// 5.0 layout
+// -----------------------------------------------------------------------------
+.lozcomments__anchor {
+	position:absolute;
+	display:block;
+	.margin(-8,0,0,-8);
+	&--is-hidden {
+		display:none;
+	}
+	[data-notation] > & {
+		margin-left:28px;
+	}
+}
+
+.lozcomments__comments {
+	position:absolute;
+	width:272px;
+	max-height:512px;
+	.margin(-5,0,0,26);
+	.box-sizing;
+			opacity:0;
+	-webkit-transform:opacity 1s ease-in-out;
+	-moz-transform:opacity 1s ease-in-out;
+	transform:opacity 1s ease-in-out;
+	&--is-inactive {
+		display:none;
+		opacity:0;
+	}
+	&--is-active {
+		display:block;
+		opacity:1;
+	}
+	[data-notation] > & {
+		margin-left:62px;
+	}
+}
+
+.lozcomments__container {
+	width:256px;
+	max-height:512px;
+	.margin(0,0,0,16);
+	.padding(16,16,16,16);
+	.box-sizing;
+}
+
+.lozcomments__thread {
+	max-height:200px;
+	overflow-y:scroll;
+	.margin(0,0,16,0);
+}
+
+.lozcomment__message {
+	.margin(0,0,16,0);
+	&-body__ {
+		&mention {
+			.margin(0,2,0,2);
+			.padding(1,3,1,1);
+			.border-radius(2);
+		}
+	}
+}
+
+.lozcomments__form {
+	&__ {
+		&author, &message {
+			width:100%;
+			.margin(0,0,8,0);
+			// .padding(4,4,4,4);
+			.padding(3,3,3,3);
+			.box-sizing;
+			&:focus {
+				.padding(3,3,3,3);
+			}
+		}
+		&submit, &cancel {
+			display:inline-block;
+			width:104px;
+			.box-sizing;
+			&:active {
+				position:relative;
+				top:1px;
+			}
+		}
+		&submit {
+			.padding(8,16,8,16);
+			.margin(0,16,0,0);			
+		}
+		&cancel {
+			.padding(7,16,7,16);
+			margin:0;
+		}
+	}
+}
+
+// 6.0 modules
+// -----------------------------------------------------------------------------
+.lozcomments__anchor {
+	@width:32px;
+	@height:32px;
+	@color:rgba(0,0,0,.35);
+	width:@width;
+	height:@height;
+	text-indent:-9999px;
+	overflow:hidden;
+	background:@color__brand;
+	.border-radius(16);
+	.box-shadow(0px,2px,3px,@color);
+	cursor:pointer;
+	a:link, a:visited, a:hover {
+		display:block;
+		position:absolute;
+		left:0;
+		top:0;
+		width:@width;
+		height:@height;
+		padding:0;
+		background:url('@{path--images}lozcomments__icon.svg') center 9px no-repeat;
+		.box-sizing;
+	}
+	&--is-selected {
+		background-color:@color__highlight;
+	}
+}
+
+.lozcomments__comments {
+	background:url('@{path--images}lozcomments__arrow--left.svg') left top no-repeat;
+}
+
+.lozcomments__container {
+	background:rgba(0,0,0,.89);
+}
+
+.lozcomments__thread {
+	border-bottom:1px solid #333;
+}
+
+.lozcomments__form {
+	&__ {
+		&author, &message, &submit, &cancel {
+			-webkit-appearance:none;
+			.border-radius(1);
+			&:focus {
+				outline:none;
+			}
+		}
+		&author, &message {
+			border:1px solid @color__neutral--mid;
+			&:focus, &:hover {
+				border:1px solid @color__link;
+			}
+			&:focus {
+				.box-shadow(0;0;5px;rgba(red(@color__link),green(@color__link),blue(@color__link),.84));
+			}
+			&--has-error {
+				&, &:focus, &:hover {
+					border:1px solid #c00;
+					.box-shadow(0;0;5px;rgba(204,0,0,.84));
+				}				
+			}
+		}
+		&submit, &cancel {
+			cursor:pointer;
+			&:focus {
+			
+			}
+		}
+		&messsage {
+			resize:vertical;
+		}
+		&submit {
+			background:@color__brand;
+			border:none;
+			&:focus, &:hover {
+				background:lighten(@color__brand,10%);
+			}
+		}
+		&cancel {
+			background:none;
+			border:1px solid @color__neutral--dark;
+			&:focus, &:hover {				
+				border-color:@color__neutral--mid;
+			}
+		}
+	}
+}
+
+.lozcomment__ {
+	&message {
+		overflow-x:hidden;
+		&-body {
+			&__mention {
+				background:@color__link;
+			}
+		}
+	}
+}
