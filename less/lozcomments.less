@@ -79,7 +79,7 @@
 		}
 		&author, &message {
 			.font-size-line-height(12,16);
-			// color:@color__neutral--mid;
+			color:@color__neutral--mid;
 			&:focus {
 				color:#454545;
 			}
@@ -119,17 +119,13 @@
 
 .lozcomments__comments {
 	position:absolute;
+	z-index:10;
 	width:272px;
 	max-height:512px;
 	.margin(-5,0,0,26);
 	.box-sizing;
-			opacity:0;
-	-webkit-transform:opacity 1s ease-in-out;
-	-moz-transform:opacity 1s ease-in-out;
-	transform:opacity 1s ease-in-out;
 	&--is-inactive {
 		display:none;
-		opacity:0;
 	}
 	&--is-active {
 		display:block;
@@ -170,7 +166,6 @@
 		&author, &message {
 			width:100%;
 			.margin(0,0,8,0);
-			// .padding(4,4,4,4);
 			.padding(3,3,3,3);
 			.box-sizing;
 			&:focus {
@@ -211,6 +206,10 @@
 	.border-radius(16);
 	.box-shadow(0px,2px,3px,@color);
 	cursor:pointer;
+	-webkit-transition:background .15s ease;
+	-moz-transition:background .15s ease;
+	-ms-transition:background .15s ease;
+	transition:background .15s ease;
 	a:link, a:visited, a:hover {
 		display:block;
 		position:absolute;
@@ -259,7 +258,8 @@
 			&--has-error {
 				&, &:focus, &:hover {
 					border:1px solid #c00;
-					.box-shadow(0;0;5px;rgba(204,0,0,.84));
+					// .box-shadow(0;0;5px;rgba(204,0,0,.92));
+					.box-shadow(0;0;5px;rgba(256,256,256,.24));
 				}				
 			}
 		}
