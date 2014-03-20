@@ -4,6 +4,11 @@
 //
 // ©2014 Loz Gray – Creative Commons Attribution Sharealike 3.0 Unported 
 // http://creativecommons.org/licenses/by-sa/3.0/
+//
+// Dependancies:
+//
+// jquery 2.x.x
+// lozcomments--jquery.min.js
 // -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
@@ -44,7 +49,7 @@
 
 // 4.0 type
 // -----------------------------------------------------------------------------
-.lozcomments__container {
+.lozcomments__pane {
 	text-align:left;
 }
 
@@ -117,31 +122,49 @@
 	}
 }
 
-.lozcomments__comments {
+.lozcomments__wrapper {
 	position:absolute;
+	display:none;
 	z-index:10;
-	width:272px;
-	max-height:512px;
-	.margin(-5,0,0,26);
+	max-height:528px;
+	.margin(26,0,44,8);
 	.box-sizing;
-	&--is-inactive {
-		display:none;
-	}
 	&--is-active {
 		display:block;
-		opacity:1;
 	}
-	[data-notation] > & {
-		margin-left:62px;
+	@media (min-width:@breakpoint--medium) {
+		width:272px;
+		max-height:512px;
+		.margin-bottom(24);
+		&--is-left {
+			.margin(7,0,24,-274);
+			[data-notation] > & {
+				margin-left:-246px;
+			}			
+		}
+		&--is-right {
+			.margin(7,0,24,26);
+			[data-notation] > & {
+				margin-left:62px;
+			}			
+		}
 	}
 }
 
-.lozcomments__container {
+.lozcomments__pane {
 	width:256px;
 	max-height:512px;
-	.margin(0,0,0,16);
+	.margin(16,0,0,0);
 	.padding(16,16,16,16);
 	.box-sizing;
+	@media (min-width:@breakpoint--medium) {
+		.lozcomments__wrapper--is-left & {
+			.margin(0,16,0,0);
+		}
+		.lozcomments__wrapper--is-right & {
+			.margin(0,0,0,16);			
+		}
+	}
 }
 
 .lozcomments__thread {
@@ -218,7 +241,7 @@
 		width:@width;
 		height:@height;
 		padding:0;
-		background:url('@{path--images}lozcomments__icon.svg') center 9px no-repeat;
+		background:url('@{path--images}lozcomments__icon.png') center 9px no-repeat;
 		.box-sizing;
 	}
 	&--is-selected {
@@ -226,12 +249,24 @@
 	}
 }
 
-.lozcomments__comments {
-	background:url('@{path--images}lozcomments__arrow--left.svg') left top no-repeat;
+.lozcomments__wrapper {
+	background:url('@{path--images}lozcomments__arrow--top.png') left top no-repeat;
+	[data-notation] > & {
+		background-position:36px 0;		
+	}
+	@media (min-width:@breakpoint--medium) {
+		&--is-left, [data-notation] &--is-left {
+			background:url('@{path--images}lozcomments__arrow--right.png') right top no-repeat;
+		}
+		&--is-right, [data-notation] &--is-right {
+			background:url('@{path--images}lozcomments__arrow--left.png') left top no-repeat;
+		}
+	}
 }
 
-.lozcomments__container {
+.lozcomments__pane {
 	background:rgba(0,0,0,.89);
+	.border-radius(1);
 }
 
 .lozcomments__thread {
