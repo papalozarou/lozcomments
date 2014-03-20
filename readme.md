@@ -1,7 +1,7 @@
 lozcomments
 ===========
 
-lozcomments is a commenting layer allowing feedback on HTML wireframes, mockups and design comps. It uses [Firebase.com](http://www.firebase.com) to store it's data and it also plays nicely with [loznotes](http://github.com/papalozarou/loznotes).
+lozcomments is a simple commenting layer to allow feedback on HTML wireframes, mockups and design comps. It uses [Firebase.com](http://www.firebase.com) to store it's data and it plays nicely with [loznotes](http://github.com/papalozarou/loznotes).
 
 ##Installation & dependancies
 A Firebase.com account is a prerequisite. So [head on over there](http://www.firebase.com) if you don't have one. You'll need your Firebase URL as well.
@@ -32,7 +32,11 @@ As a first release this has been designed to be used on elements that are not to
 1. You have to keep track of comment-able element numbers yourself
 2. Covering every eventuality of positioning that arise from tagging well nested elements (though this is mainly at smaller screen sizes)
 
-lozcomments are responisive, with a breakpoint of 40em/640px.
+lozcomments are responisive, with a single breakpoint at 40em/640px.
+
+The comment pane (and form) for any given element is opened by clicking on the comment anchor. To close click the anchor again or hit 'Cancel'.
+
+There is simple error checking on the comment form, so no blank comments can be posted. The name field input will be stored whilst the window/tab is open and it also propagates to all other commenting forms on the page so you don't have to type it in everytime.
 
 Within comments themselves, line breaks, links and @mentions of previous commenters are possible. You may have luck with other HTML elements, but these haven't been extensively tested.
 
@@ -59,6 +63,7 @@ Obviously performance in other browsers might be, erm, crap.
 
 ##Things that need adding, but that might not get added, because time
 * Fix scrolling to bottom of thread authomatically, so you can see the last comment when a pane is opened
+* Dont add the thread <dl> when there are no comments for an element yet
 * Some method of indicating that comments are resolved
 * Comment counts shown on comment anchors
 * Comment dates
