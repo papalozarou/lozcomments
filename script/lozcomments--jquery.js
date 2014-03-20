@@ -118,7 +118,7 @@ var lozcomments = (function () {
 	// and upwards, to avoid the comment pane appearing off screen
 	function positionPanes() {
 			// grab current width
-			var currentWidth = $(window).width();
+			currentWidth = $(window).width();
 			
 			// tests to see if currentWidth is higher than breakpointMedium
 			// and if it is add classes to panes
