@@ -8,11 +8,11 @@
 // Dependancies:
 //
 // jquery 2.x.x
-// lozcomments.css or lozcomments.min.css
+// lozcomments.css
 // -----------------------------------------------------------------------------
 var lozcomments = (function () {
-	// some global variables
-	var firebaseRootURL = "https://blinding-fire-4499.firebaseio.com/",
+	// some global variables – you just need to add you're firebase URL (root)
+	var firebaseRootURL = "https:your-firebase-url.firebaseio.com",
 		firebaseDocumentURL,
 		firebase,
 		firebaseChild;
