@@ -1,5 +1,6 @@
 lozcomments
 ===========
+Demo page: http://testbed.lozworld.com/lozcomments
 
 lozcomments is a simple commenting layer to allow feedback on HTML wireframes, mockups and design comps. It uses [Firebase.com](http://www.firebase.com) to store it's data and it plays nicely with [loznotes](http://github.com/papalozarou/loznotes).
 
