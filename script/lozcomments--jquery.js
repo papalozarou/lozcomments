@@ -51,7 +51,8 @@ var lozcomments = (function () {
 				$(commentAnchorHTML).add($(commentPaneHTML)).prependTo(commentableElements[i]);
 		}
 
-		// grab inserted comment anchors, panes and form submit/cancel buttons
+		// grab inserted comment anchors, panes and form submit/cancel
+		// buttons
 		commentAnchors = $('.lozcomments__anchor a');
 		commentPanes = $('.lozcomments__wrapper');
 		commentThreads = $('.lozcomments__thread');
@@ -238,7 +239,8 @@ var lozcomments = (function () {
 
 	// scrolls comment panes to end
 	function scrollToThreadEnd(thread) {
-		$(thread).scrollTop($(thread).prop("scrollHeight"));
+		// $(thread).animate({scrollTop:$(thread)[0].scrollHeight},500);
+		$(thread).stop(true,true).animate({scrollTop:$(thread).prop('scrollHeight')},500);
 	}
 
 	// submits a comment
