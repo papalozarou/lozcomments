@@ -12,7 +12,8 @@
 // -----------------------------------------------------------------------------
 var lozcomments = (function () {
 	// some global variables – you just need to add you're firebase URL (root)
-	var firebaseRootURL = "https:your-firebase-url.firebaseio.com",
+	// var firebaseRootURL = "https:your-firebase-url.firebaseio.com",
+	var firebaseRootURL = "https://blinding-fire-4499.firebaseio.com/",
 		firebaseDocumentURL,
 		firebase,
 		firebaseChild;
@@ -166,6 +167,8 @@ var lozcomments = (function () {
 		
 				$(commentThread).append('<dt class="lozcomment__author">' + comment.author + '</dt>');
 				$(commentThread).append('<dd class="lozcomment__message">' + formattedMessage + '</dd>');
+				
+				scrollToThreadEnd(commentThread);
 			});
 		});
 	}
@@ -201,14 +204,14 @@ var lozcomments = (function () {
 		
 				openPane(newAnchorHash);
 				
-				scrollToThreadEnd(newAnchorHash);
+				scrollToThreadEnd(newAnchorHash + ' .lozcomments__thread');
 			}
 		} else {
 			addAnchorClass(newAnchor);
 	
 			openPane(newAnchorHash);
 			
-			scrollToThreadEnd(newAnchorHash);
+			scrollToThreadEnd(newAnchorHash + ' .lozcomments__thread');
 		}
 	}
 
@@ -235,8 +238,8 @@ var lozcomments = (function () {
 	}
 
 	// scrolls comment panes to end
-	function scrollToThreadEnd(anchorHash) {
-		$(anchorHash).scrollTop($(anchorHash).prop("scrollHeight"));
+	function scrollToThreadEnd(thread) {
+		$(thread).scrollTop($(thread).prop("scrollHeight"));
 	}
 
 	// submits a comment
