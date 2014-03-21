@@ -63,7 +63,6 @@ I've only really tested this in Chrome (33) and Safari (7) on desktop. On handhe
 Obviously performance in other browsers might be, erm, crap.
 
 ##Things that need adding, but that might not get added, because time
-* Fix scrolling to bottom of thread authomatically, so you can see the last comment when a pane is opened
 * Dont add the thread dl when there are no comments for an element yet
 * Some method of indicating that comments are resolved
 * Comment counts shown on comment anchors
