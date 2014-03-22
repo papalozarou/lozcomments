@@ -240,7 +240,7 @@ var lozcomments = (function () {
 	// scrolls comment panes to end
 	function scrollToThreadEnd(thread) {
 		// $(thread).animate({scrollTop:$(thread)[0].scrollHeight},500);
-		$(thread).stop(true,true).animate({scrollTop:$(thread).prop('scrollHeight')},500);
+		$(thread).stop(true,true).animate({scrollTop:$(thread).prop('scrollHeight')},750);
 	}
 
 	// submits a comment
