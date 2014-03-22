@@ -265,14 +265,14 @@ var lozcomments = (function () {
 					author:author,
 					message:message
 				});
+				
+				// clear message input, but retain name and propogate to all
+				// input fields
+				$('.lozcomments__form__author').val(author);
+				messageInput.val('');
 			} else {
 				formErrors(author,authorInput,message,messageInput);
 			}
-			
-			// clear message input, but retain name and propogate to all
-			// input fields
-			$('.lozcomments__form__author').val(author);
-			messageInput.val('');
 	
 			e.preventDefault();
 		});
