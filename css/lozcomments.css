@@ -1,4 +1,6 @@
 div.lozcomments__pane {
+  line-height: 16px;
+  line-height: 1.6rem;
   text-align: left;
 }
 dt.lozcomment__author,
