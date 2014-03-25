@@ -131,7 +131,9 @@ var lozcomments = (function () {
 						anchorParentPosition = anchorParent.offset(),
 						pane = anchorParent.siblings('.lozcomments__wrapper');
 					
-					if (anchorParentPosition.left > (breakpointMedium - 274)) {
+					// check anchor position against current width minus comment
+					// wrapper width (274) + anchor width (32 + 2) + 10 extra 
+					if (anchorParentPosition.left > (currentWidth - 318)) {
 						pane.addClass(paneLeft).removeClass(paneRight);
 					} else {
 						pane.addClass(paneRight).removeClass(paneLeft);
