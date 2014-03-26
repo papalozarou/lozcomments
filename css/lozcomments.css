@@ -94,13 +94,22 @@ div.lozcomments__wrapper {
   display: none;
   z-index: 10;
   max-height: 528px;
-  margin: 26px 0px 44px 8px;
-  margin: 2.6rem 0px 4.4rem 8px;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 div.lozcomments__wrapper--is-active {
   display: block;
+}
+div.lozcomments__wrapper--is-left {
+  margin: 26px 0px 44px -248px;
+  margin: 2.6rem 0px 4.4rem -248px;
+}
+[data-notation] > div.lozcomments__wrapper--is-left {
+  margin-left: -212px;
+}
+div.lozcomments__wrapper--is-right {
+  margin: 26px 0px 44px 8px;
+  margin: 2.6rem 0px 4.4rem 8px;
 }
 @media (min-width: 40em) {
   div.lozcomments__wrapper {
@@ -124,6 +133,21 @@ div.lozcomments__wrapper--is-active {
     margin-left: 62px;
   }
 }
+@media (min-height: 56em) {
+  div.lozcomments__wrapper {
+    max-height: 640px;
+  }
+}
+@media (min-height: 64em) {
+  div.lozcomments__wrapper {
+    max-height: 768px;
+  }
+}
+@media (min-height: 75em) {
+  div.lozcomments__wrapper {
+    max-height: 896px;
+  }
+}
 div.lozcomments__pane {
   width: 256px;
   max-height: 512px;
@@ -144,11 +168,41 @@ div.lozcomments__pane {
     margin: 0rem 0px 0rem 16px;
   }
 }
+@media (min-height: 56em) {
+  div.lozcomments__pane {
+    max-height: 640px;
+  }
+}
+@media (min-height: 64em) {
+  div.lozcomments__pane {
+    max-height: 768px;
+  }
+}
+@media (min-height: 75em) {
+  div.lozcomments__pane {
+    max-height: 896px;
+  }
+}
 dl.lozcomments__thread {
   max-height: 200px;
   overflow-y: scroll;
   margin: 0px 0px 16px 0px;
   margin: 0rem 0px 1.6rem 0px;
+}
+@media (min-height: 56em) {
+  dl.lozcomments__thread {
+    max-height: 328px;
+  }
+}
+@media (min-height: 64em) {
+  dl.lozcomments__thread {
+    max-height: 456px;
+  }
+}
+@media (min-height: 75em) {
+  dl.lozcomments__thread {
+    max-height: 584px;
+  }
 }
 dd.lozcomment__message {
   margin: 0px 0px 16px 0px;
@@ -231,9 +285,17 @@ figure.lozcomments__anchor--is-selected {
   background-color: #236b6b;
 }
 div.lozcomments__wrapper {
-  background: url('../img/lozcomments__arrow--top.png') left top no-repeat;
+  background-repeat: no-repeat;
 }
-[data-notation] > div.lozcomments__wrapper {
+div.lozcomments__wrapper--is-left {
+  background-image: url('../img/lozcomments__arrow--top--right.png');
+  background-position: right top;
+}
+div.lozcomments__wrapper--is-right {
+  background-image: url('../img/lozcomments__arrow--top--left.png');
+  background-position: left top;
+}
+[data-notation] > div.lozcomments__wrapper--is-right {
   background-position: 36px 0;
 }
 @media (min-width: 40em) {
