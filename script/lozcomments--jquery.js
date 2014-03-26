@@ -12,14 +12,14 @@
 // -----------------------------------------------------------------------------
 var lozcomments = (function () {
 	// some global variables – you just need to add you're firebase URL (root)
-	var firebaseRootURL = "https:your-firebase-url.firebaseio.com",
+	// var firebaseRootURL = "https:your-firebase-url.firebaseio.com",
+	var firebaseRootURL = "https://blinding-fire-4499.firebaseio.com/",
 		firebaseDocumentURL,
 		firebase,
 		firebaseChild;
 	
 	var originalWidth = $(window).width(),
-		currentWidth,
-		breakpointMedium = 640;
+		currentWidth;
 	
 	var commentableElements;
 	
@@ -44,9 +44,9 @@ var lozcomments = (function () {
 
 		// create anchors, comment panes for each of the above elements
 		for (var i = commentableElements.length - 1; i >= 0; i--) {
-			var count = i + 1,
-				commentAnchorHTML = createCommentAnchors(count),
-				commentPaneHTML = createCommentPanes(count);
+			var commentID = $(commentableElements[i]).closest('[data-comments]').data('comments'),
+				commentAnchorHTML = createCommentAnchors(commentID),
+				commentPaneHTML = createCommentPanes(commentID);
 				
 				$(commentAnchorHTML).add($(commentPaneHTML)).prependTo(commentableElements[i]);
 		}
@@ -81,36 +81,36 @@ var lozcomments = (function () {
 	}
 
 	// creates comment anchors and comments
-	function createCommentAnchors(i) {
-		var commentAnchor = '<figure class="lozcomments__anchor lozcomments__anchor-' + i + '">Comment<a href="#lozcomments__comments-' + i + '"></a></figure>';
+	function createCommentAnchors(commentID) {
+		var commentAnchor = '<figure class="lozcomments__anchor lozcomments__anchor--' + commentID + '">Comment<a href="#lozcomments__' + commentID + '"></a></figure>';
 
 		return commentAnchor;
 	}
 
 	// creates comments divs
-	function createCommentPanes(i) {
-		var commentFormHTML = createCommentForm(i),
-			commentThreadHTML = createCommentThread(i);
+	function createCommentPanes(commentID) {
+		var commentFormHTML = createCommentForm(commentID),
+			commentThreadHTML = createCommentThread(commentID);
 
-		var commentPane = '<div id="lozcomments__comments-' + i + '" class="lozcomments__wrapper"><div class="lozcomments__pane">' + commentThreadHTML + commentFormHTML + '</div></div>';
+		var commentPane = '<div id="lozcomments__' + commentID + '" class="lozcomments__wrapper"><div class="lozcomments__pane">' + commentThreadHTML + commentFormHTML + '</div></div>';
 
 		return commentPane;
 	}
 
 	// generates HTML for the comment form
-	function createCommentForm(i) {
-		var commentFormAuthor = '<input type="text" placeholder="Name" class="lozcomments__form__author lozcomments__form-' + i + '__author" />',
-			commentFormMessage = '<textarea rows="4" placeholder="Comment" class="lozcomments__form__message lozcomments__form-' + i + '__message" />',
-			commentFormSubmit = '<input type="submit" class="lozcomments__form__submit lozcomments__form-' + i + '__submit" value="Comment" />',
-			commentFormCancel = '<input type="button" class="lozcomments__form__cancel lozcomments__form-' + i + '__cancel" value="Cancel" />',
-			commentForm = '<form method="post" class="lozcomments__form lozcomments__form-' + i + '">' + commentFormAuthor + commentFormMessage + commentFormSubmit + commentFormCancel + '</form>';
+	function createCommentForm(commentID) {
+		var commentFormAuthor = '<input type="text" placeholder="Name" class="lozcomments__form__author lozcomments__form--' + commentID + '__author" />',
+			commentFormMessage = '<textarea rows="4" placeholder="Comment" class="lozcomments__form__message lozcomments__form--' + commentID + '__message" />',
+			commentFormSubmit = '<input type="submit" class="lozcomments__form__submit lozcomments__form--' + commentID + '__submit" value="Comment" />',
+			commentFormCancel = '<input type="button" class="lozcomments__form__cancel lozcomments__form--' + commentID + '__cancel" value="Cancel" />',
+			commentForm = '<form method="post" class="lozcomments__form lozcomments__form--' + commentID + '">' + commentFormAuthor + commentFormMessage + commentFormSubmit + commentFormCancel + '</form>';
 
 		return commentForm;
 	}
 
 	// generate HTML for the comment thread
-	function createCommentThread(i) {
-		var commentThread = '<dl class="lozcomments__thread lozcomments__thread-' + i + '"></dl>';
+	function createCommentThread(commentID) {
+		var commentThread = '<dl class="lozcomments__thread lozcomments__thread--' + commentID + '"></dl>';
 
 		return commentThread;
 	}
@@ -121,26 +121,21 @@ var lozcomments = (function () {
 			// grab current width
 			currentWidth = $(window).width();
 			
-			// tests to see if currentWidth is higher than breakpointMedium
-			// and if it is add classes to panes
-			if (currentWidth >= breakpointMedium) {
-				for (var i = commentAnchors.length - 1; i >= 0; i--) {
-					// get anchor parent, it's offset and it's neighbouring
-					// wrapper/pane
-					var anchorParent = $(commentAnchors[i]).parent('.lozcomments__anchor'),
-						anchorParentPosition = anchorParent.offset(),
-						pane = anchorParent.siblings('.lozcomments__wrapper');
-					
-					// check anchor position against current width minus comment
-					// wrapper width (274) + anchor width (32 + 2) + 10 extra 
-					if (anchorParentPosition.left > (currentWidth - 318)) {
-						pane.addClass(paneLeft).removeClass(paneRight);
-					} else {
-						pane.addClass(paneRight).removeClass(paneLeft);
-					}
+			// check position and add relevant class
+			for (var i = commentAnchors.length - 1; i >= 0; i--) {
+				// get anchor parent, it's offset and it's neighbouring
+				// wrapper/pane
+				var anchorParent = $(commentAnchors[i]).parent('.lozcomments__anchor'),
+					anchorParentPosition = anchorParent.offset(),
+					pane = anchorParent.siblings('.lozcomments__wrapper');
+				
+				// check anchor position against current width minus comment
+				// wrapper width (274) + anchor width (32 + 2) + 10 extra 
+				if (anchorParentPosition.left > (currentWidth - 318)) {
+					pane.addClass(paneLeft).removeClass(paneRight);
+				} else {
+					pane.addClass(paneRight).removeClass(paneLeft);
 				}
-			} else {
-				commentPanes.removeClass(paneLeft,paneRight);
 			}
 			
 			originalWidth = currentWidth;
