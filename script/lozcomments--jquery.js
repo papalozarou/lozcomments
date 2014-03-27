@@ -12,8 +12,7 @@
 // -----------------------------------------------------------------------------
 var lozcomments = (function () {
 	// some global variables – you just need to add you're firebase URL (root)
-	// var firebaseRootURL = "https:your-firebase-url.firebaseio.com",
-	var firebaseRootURL = "https://blinding-fire-4499.firebaseio.com/",
+	var firebaseRootURL = "https:your-firebase-url.firebaseio.com",
 		firebaseDocumentURL,
 		firebase,
 		firebaseChild;
@@ -130,11 +129,19 @@ var lozcomments = (function () {
 					pane = anchorParent.siblings('.lozcomments__wrapper');
 				
 				// check anchor position against current width minus comment
-				// wrapper width (274) + anchor width (32 + 2) + 10 extra 
-				if (anchorParentPosition.left > (currentWidth - 318)) {
-					pane.addClass(paneLeft).removeClass(paneRight);
+				// wrapper width (274) + anchor width (32 + 2) + 10 extra
+				if (currentWidth > 480) {
+					if (anchorParentPosition.left > (currentWidth - 318)) {
+						pane.addClass(paneLeft).removeClass(paneRight);
+					} else {
+						pane.addClass(paneRight).removeClass(paneLeft);
+					}
 				} else {
-					pane.addClass(paneRight).removeClass(paneLeft);
+					if (anchorParentPosition.left > 250) {
+						pane.addClass(paneLeft).removeClass(paneRight);
+					} else {
+						pane.addClass(paneRight).removeClass(paneLeft);
+					}
 				}
 			}
 			
